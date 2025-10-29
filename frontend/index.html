@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Devis - Les Domaines Rares</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🏰 Générateur de Devis</h1>
+            <p class="subtitle">Les Domaines Rares - Événements d'Exception</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Section 1: Informations de base -->
+            <section class="card">
+                <h2>📋 Informations de base</h2>
+                <div class="form-group">
+                    <label for="titre">Titre/Nom du lieu *</label>
+                    <input type="text" id="titre" name="titre" placeholder="Ex: Château de Versailles" required>
+                </div>
+                <div class="form-group">
+                    <label for="adresse">Adresse complète *</label>
+                    <textarea id="adresse" name="adresse" rows="3" placeholder="Adresse complète du lieu" required></textarea>
+                </div>
+                <button id="btn-generate-ai" class="btn btn-primary btn-ai">
+                    ✨ Générer la présentation avec l'IA
+                </button>
+                <div id="ai-loading" class="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Génération en cours avec Claude AI...</p>
+                </div>
+            </section>
+
+            <!-- Section 2: Textes générés -->
+            <section class="card">
+                <h2>✍️ Textes de présentation</h2>
+                <div class="form-group">
+                    <label for="texte-presentation">Texte de présentation</label>
+                    <textarea id="texte-presentation" name="texte-presentation" rows="6" placeholder="Texte commercial de présentation du lieu..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="informations-acces">Informations d'accès</label>
+                    <textarea id="informations-acces" name="informations-acces" rows="6" placeholder="Informations pratiques d'accès et transport..."></textarea>
+                </div>
+            </section>
+
+            <!-- Section 3: Détails du client -->
+            <section class="card">
+                <h2>👤 Informations client</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nom-client">Nom du client *</label>
+                        <input type="text" id="nom-client" name="nom-client" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email-client">Email</label>
+                        <input type="email" id="email-client" name="email-client">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telephone-client">Téléphone</label>
+                        <input type="tel" id="telephone-client" name="telephone-client">
+                    </div>
+                    <div class="form-group">
+                        <label for="entreprise-client">Entreprise</label>
+                        <input type="text" id="entreprise-client" name="entreprise-client">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Détails de l'événement -->
+            <section class="card">
+                <h2>🎉 Détails de l'événement</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date-evenement">Date de l'événement *</label>
+                        <input type="date" id="date-evenement" name="date-evenement" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nb-personnes">Nombre de personnes *</label>
+                        <input type="number" id="nb-personnes" name="nb-personnes" min="1" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="type-evenement">Type d'événement</label>
+                    <select id="type-evenement" name="type-evenement">
+                        <option value="">Sélectionner...</option>
+                        <option value="seminaire">Séminaire</option>
+                        <option value="team-building">Team Building</option>
+                        <option value="soiree-entreprise">Soirée d'entreprise</option>
+                        <option value="lancement-produit">Lancement de produit</option>
+                        <option value="conference">Conférence</option>
+                        <option value="gala">Gala</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Section 5: Prestations et tarifs -->
+            <section class="card">
+                <h2>💰 Prestations et tarifs</h2>
+                <div id="prestations-container">
+                    <!-- Prestations will be added dynamically -->
+                </div>
+                <button id="btn-add-prestation" class="btn btn-secondary">
+                    ➕ Ajouter une prestation
+                </button>
+                <div class="total-section">
+                    <div class="total-row">
+                        <span>Sous-total HT :</span>
+                        <span id="total-ht" class="total-amount">0,00 €</span>
+                    </div>
+                    <div class="total-row">
+                        <span>TVA (20%) :</span>
+                        <span id="total-tva" class="total-amount">0,00 €</span>
+                    </div>
+                    <div class="total-row total-final">
+                        <span>Total TTC :</span>
+                        <span id="total-ttc" class="total-amount">0,00 €</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Notes et conditions -->
+            <section class="card">
+                <h2>📝 Notes et conditions</h2>
+                <div class="form-group">
+                    <label for="notes">Notes complémentaires</label>
+                    <textarea id="notes" name="notes" rows="4" placeholder="Notes, conditions particulières, informations additionnelles..."></textarea>
+                </div>
+            </section>
+
+            <!-- Actions -->
+            <section class="actions">
+                <button id="btn-save" class="btn btn-secondary">
+                    💾 Sauvegarder
+                </button>
+                <button id="btn-load" class="btn btn-secondary">
+                    📂 Charger
+                </button>
+                <button id="btn-new" class="btn btn-secondary">
+                    🆕 Nouveau
+                </button>
+                <button id="btn-export-pdf" class="btn btn-primary">
+                    📄 Exporter en PDF
+                </button>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2025 Les Domaines Rares - Tous droits réservés</p>
+            <p class="version">Version 2.0.0 - Powered by Claude AI</p>
+        </footer>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container"></div>
+
+    <!-- Prestation Template -->
+    <template id="prestation-template">
+        <div class="prestation-item">
+            <div class="prestation-header">
+                <span class="prestation-number"></span>
+                <button class="btn-remove-prestation" title="Supprimer">✕</button>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" class="prestation-description" placeholder="Description de la prestation">
+                </div>
+                <div class="form-group form-group-small">
+                    <label>Quantité</label>
+                    <input type="number" class="prestation-quantite" min="1" value="1">
+                </div>
+                <div class="form-group form-group-small">
+                    <label>Prix unitaire HT</label>
+                    <input type="number" class="prestation-prix" min="0" step="0.01" placeholder="0.00">
+                </div>
+                <div class="form-group form-group-small">
+                    <label>Total HT</label>
+                    <input type="text" class="prestation-total" readonly>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Load modules -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
