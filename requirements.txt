@@ -1,0 +1,22 @@
+# Flask Core
+Flask==3.0.0
+Flask-CORS==4.0.0
+
+# HTTP & API
+requests==2.31.0
+
+# Environment & Config
+python-dotenv==1.0.0
+
+# Validation (future use)
+marshmallow==3.20.1
+
+# Rate Limiting (future use)
+Flask-Limiter==3.5.0
+
+# Caching (future use)
+Flask-Caching==2.1.0
+
+# Production Server
+gunicorn==21.2.0
+Werkzeug==3.0.1
