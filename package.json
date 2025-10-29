@@ -1,0 +1,37 @@
+{
+  "name": "lesdomainesrares-quote-generator",
+  "version": "2.0.0",
+  "description": "Générateur de devis intelligent avec IA pour Les Domaines Rares",
+  "main": "frontend/js/main.js",
+  "scripts": {
+    "start": "python backend/server.py",
+    "dev": "python backend/server.py",
+    "test": "pytest tests/",
+    "lint": "eslint frontend/js/**/*.js",
+    "lint:fix": "eslint frontend/js/**/*.js --fix",
+    "format": "prettier --write frontend/**/*.{js,css,html}"
+  },
+  "keywords": [
+    "quote",
+    "generator",
+    "pdf",
+    "ai",
+    "claude",
+    "events",
+    "business"
+  ],
+  "author": "Les Domaines Rares",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Albert-AI65/lesdomainesrares-quote-generator.git"
+  },
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.1"
+  },
+  "dependencies": {
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2"
+  }
+}
